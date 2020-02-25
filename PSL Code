@@ -1,0 +1,122 @@
+{
+
+uses "stdlib.psm"
+include "colors.pin"
+uses "shapes.psm"
+
+uses "barcode.psm"
+uses "postalLib.psm"
+
+%  Papersize
+% Uploading Image from src
+
+setPaperSize 11,8.5
+
+image getCurrentDirectory&"\\resources\\"&"family.jpeg",0.5
+
+
+% Header
+
+setFont "times-roman",35
+setTextFillMode 1
+setcolor blue
+
+cj % center justified
+
+tSetY 0.2
+print"Anthem Health Care\n\n\n\n"
+
+
+
+
+% Setting Variable for box (B)
+B = newTextBox  3,1, leftJust,topJust, false
+setFont "times-bold", 11
+setColor cWhite
+gPosition 0.1,3.2
+printIn B, "When it comes to your"
+setColor cblue
+gPosition 1.65,3.2
+setFont "times-bold",11
+printIn B, "Loved Ones..."
+
+
+
+% Use Box  to print
+
+
+
+setFontSize 16
+setColor cBlue
+gPosition 0,4
+printin B, " Its Good to Have Options"
+
+gposition 10,0.2
+placeStampHere
+
+
+
+setFont "times-roman", 37
+setColor cWhite
+gPosition 1.6,1.8
+printin B, merge["first"] & ","
+
+
+
+%Barcode
+
+setFontSize 11
+gPosition 7.9,8.2
+printIMB "12345678901",1,123,456789,192837475
+
+
+
+%  Repeat and Place To the Right
+%SuperScript Interest on Savings
+function printSuperscripted text do
+setSuperscript on
+print text
+setSuperscript off
+end
+
+
+% Coverage
+
+
+setFont "Helvetica", 20
+gPosition 0.5,6.4
+setColor Gold
+printin B,  "Coverage"
+
+
+% Plans for Coverage
+
+setOutlineColorFor B, black
+gPosition 0.5,6.5
+SetFontSize  16
+setColor White
+printIn B, "\nHMO\nPPO\nPOS\nHDHP/SO\n"
+
+% Savings for members
+
+
+setFont "helvetica", 12
+setColor cYellow
+Rj
+tsetY 5.9
+
+ print "Average Member Savings "
+setFont "times-roman", 15
+setTextFillMode colorFill
+setTextFillColor cWhite
+printSuperscripted "3.5%"
+ 
+
+% Function for image files
+
+function createImageOf fileName do
+
+end
+
+
+}
